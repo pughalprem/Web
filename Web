@@ -1,0 +1,850 @@
+### Web Technology Practical Exam – Complete Coding Notes
+
+Here are exam-ready programs for all 22 questions, in simple code that is easier to study and write tomorrow. I've separated them into HTML/CSS/JavaScript/XML and Java/JSP/Servlet/JDBC.
+
+Exam tip: Practise the basic structure, filenames, and output for each program. For database and servlet programs, remember that you need the appropriate database, JDBC driver, and servlet/JSP server.
+
+### Part A — HTML, CSS, JavaScript and XML
+
+### 1\. College website with departments and links
+
+File: `college.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My College</title>
+</head>
+<body>
+    <h1><u>My College</u></h1>
+
+    <p>
+        Welcome to <b>MEASI Institute</b>.
+        It provides <i>quality education</i>.
+    </p>
+
+    <h2 style="color:blue;">Departments</h2>
+    <ul>
+        <li><a href="bca.html">BCA</a></li>
+        <li><a href="mca.html">MCA</a></li>
+        <li><a href="bcom.html">B.Com</a></li>
+    </ul>
+</body>
+</html>
+```
+
+Create separate `bca.html`, `mca.html`, and `bcom.html` pages for the links to work.
+
+### 2\. Online shopping home page using frames
+
+File: `home.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head><title>Shopping Website</title></head>
+<frameset rows="20%,80%">
+    <frame src="header.html">
+    <frameset cols="25%,75%">
+        <frame src="menu.html">
+        <frame src="main.html" name="content">
+    </frameset>
+</frameset>
+</html>
+```
+
+File: `header.html`
+
+```html
+<h1>ABC Shopping</h1>
+```
+
+File: `menu.html`
+
+```html
+<a href="homecontent.html" target="content">Home</a><br>
+<a href="login.html" target="content">Login</a><br>
+<a href="products.html" target="content">Products</a><br>
+<a href="cart.html" target="content">Cart</a>
+```
+
+File: `main.html`
+
+```html
+<h2>Welcome to Online Shopping</h2>
+<p>Buy your favourite products online.</p>
+```
+
+Note: `<frameset>` and `<frame>` are obsolete in HTML5, but they are commonly included in older practical exam questions.
+
+### 3\. Static login page using HTML and CSS
+
+File: `login.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+<style>
+body { font-family: Arial; background: lightblue; }
+.box {
+    width: 300px; margin: 100px auto;
+    padding: 20px; background: white;
+    text-align: center;
+}
+input { margin: 8px; padding: 8px; }
+</style>
+</head>
+<body>
+<div class="box">
+    <h2>Login</h2>
+    <form>
+        <input type="text" placeholder="Username" required><br>
+        <input type="password" placeholder="Password" required><br>
+        <input type="submit" value="Login">
+    </form>
+</div>
+</body>
+</html>
+```
+
+### 4\. Horizontal navigation bar with submenu
+
+File: `menu.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+    list-style: none; margin: 0; padding: 0;
+    background: black;
+}
+ul li { display: inline-block; position: relative; }
+li a {
+    display: block; padding: 14px 20px;
+    color: white; text-decoration: none;
+}
+li a:hover { background: green; }
+.submenu {
+    display: none; position: absolute;
+    min-width: 150px; background: black;
+}
+.submenu a { display: block; }
+li:hover .submenu { display: block; }
+</style>
+</head>
+<body>
+<ul>
+    <li><a href="#">Home</a></li>
+    <li>
+        <a href="#">Courses</a>
+        <div class="submenu">
+            <a href="#">BCA</a>
+            <a href="#">MCA</a>
+            <a href="#">B.Com</a>
+        </div>
+    </li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
+</body>
+</html>
+```
+
+### 5\. Login page with JavaScript validation
+
+File: `validate.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head><title>Login Validation</title></head>
+<body>
+<h2>User Login</h2>
+
+<form onsubmit="return validate()">
+    Username: <input type="text" id="user"><br><br>
+    Password: <input type="password" id="pass"><br><br>
+    <input type="submit" value="Login">
+</form>
+
+<p id="msg"></p>
+
+<script>
+function validate() {
+    var u = document.getElementById("user").value;
+    var p = document.getElementById("pass").value;
+
+    if (u == "" || p == "") {
+        document.getElementById("msg").innerHTML =
+            "Enter username and password";
+        return false;
+    }
+
+    if (u == "admin" && p == "1234") {
+        document.getElementById("msg").innerHTML =
+            "Login successful";
+        return false;
+    }
+
+    document.getElementById("msg").innerHTML =
+        "Invalid username or password";
+    return false;
+}
+</script>
+</body>
+</html>
+```
+
+This is a demonstration of client-side validation, not secure authentication.
+
+### 6\. XML document for an address book
+
+File: `address.xml`
+
+```xml
+<?xml version="1.0"?>
+<addressbook>
+    <person>
+        <name>Arun</name>
+        <phone>9876543210</phone>
+        <email>arun@gmail.com</email>
+        <city>Chennai</city>
+    </person>
+    <person>
+        <name>Ravi</name>
+        <phone>9876501234</phone>
+        <email>ravi@gmail.com</email>
+        <city>Madurai</city>
+    </person>
+</addressbook>
+```
+
+### 7\. XML document for customer details
+
+File: `customer.xml`
+
+```xml
+<?xml version="1.0"?>
+<customers>
+    <customer>
+        <id>101</id>
+        <name>Arun</name>
+        <email>arun@gmail.com</email>
+        <city>Chennai</city>
+    </customer>
+    <customer>
+        <id>102</id>
+        <name>Ravi</name>
+        <email>ravi@gmail.com</email>
+        <city>Madurai</city>
+    </customer>
+</customers>
+```
+
+### 8\. Internal DTD for customer details
+
+File: `customer.dtd.xml`
+
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE customers [
+    <!ELEMENT customers (customer+)>
+    <!ELEMENT customer (id,name,email,city)>
+    <!ELEMENT id (#PCDATA)>
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT email (#PCDATA)>
+    <!ELEMENT city (#PCDATA)>
+]>
+<customers>
+    <customer>
+        <id>101</id>
+        <name>Arun</name>
+        <email>arun@gmail.com</email>
+        <city>Chennai</city>
+    </customer>
+</customers>
+```
+
+The DTD specifies that `customers` contains one or more `customer` elements. Each customer must contain `id`, `name`, `email`, and `city` in that order.
+
+### 9\. External DTD for customer details
+
+File: `customer.dtd`
+
+```xml
+<!ELEMENT customers (customer+)>
+<!ELEMENT customer (id,name,email,city)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+```
+
+File: `customer.xml`
+
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE customers SYSTEM "customer.dtd">
+<customers>
+    <customer>
+        <id>101</id>
+        <name>Arun</name>
+        <email>arun@gmail.com</email>
+        <city>Chennai</city>
+    </customer>
+</customers>
+```
+
+Save both files in the same folder. An XML parser that supports DTD validation can check whether the document follows the DTD.
+
+### 10\. XML person details transformed into an HTML table using XSLT
+
+File: `person.xml`
+
+```xml
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="person.xsl"?>
+<persons>
+    <person>
+        <name>Arun</name>
+        <age>21</age>
+        <city>Chennai</city>
+    </person>
+    <person>
+        <name>Ravi</name>
+        <age>22</age>
+        <city>Madurai</city>
+    </person>
+</persons>
+```
+
+File: `person.xsl`
+
+```xml
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0"
+ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/">
+<html>
+<body>
+<h2>Person Details</h2>
+<table border="1">
+<tr><th>Name</th><th>Age</th><th>City</th></tr>
+<xsl:for-each select="persons/person">
+<tr>
+<td><xsl:value-of select="name"/></td>
+<td><xsl:value-of select="age"/></td>
+<td><xsl:value-of select="city"/></td>
+</tr>
+</xsl:for-each>
+</table>
+</body>
+</html>
+</xsl:template>
+</xsl:stylesheet>
+```
+
+Save both files together. Open `person.xml` in an XSLT-capable browser or processor to view the transformed table.
+
+### 11\. Book information using XML, external DTD and HTML table
+
+### (a) XML file
+
+File: `book.xml`
+
+```xml
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="book.xsl"?>
+<!DOCTYPE book SYSTEM "book.dtd">
+
+<book>
+    <title>Java Programming</title>
+    <author>James Gosling</author>
+    <isbn>1234567890</isbn>
+    <publisher>ABC Publications</publisher>
+    <edition>2</edition>
+    <price>500</price>
+</book>
+```
+
+### (b) External DTD
+
+File: `book.dtd`
+
+```xml
+<!ELEMENT book (title,author,isbn,publisher,edition,price)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT isbn (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT edition (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+```
+
+### (c) XSL file to display the book in a table
+
+File: `book.xsl`
+
+```xml
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0"
+ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/">
+<html><body>
+<h2>Book Information</h2>
+<table border="1">
+<tr><th>Title</th><th>Author</th><th>ISBN</th>
+<th>Publisher</th><th>Edition</th><th>Price</th></tr>
+<tr>
+<td><xsl:value-of select="book/title"/></td>
+<td><xsl:value-of select="book/author"/></td>
+<td><xsl:value-of select="book/isbn"/></td>
+<td><xsl:value-of select="book/publisher"/></td>
+<td><xsl:value-of select="book/edition"/></td>
+<td><xsl:value-of select="book/price"/></td>
+</tr>
+</table>
+</body></html>
+</xsl:template>
+</xsl:stylesheet>
+```
+
+### 12\. Online book store navigation table with logo
+
+File: `bookstore.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online Book Store</title>
+<style>
+body { font-family: Arial; }
+table { width: 100%; text-align: center; }
+th, td { padding: 15px; }
+a { text-decoration: none; color: blue; }
+</style>
+</head>
+<body>
+<table border="1">
+<tr>
+    <td><img src="logo.png" width="60" alt="Logo"></td>
+    <th colspan="5">ABC Online Book Store</th>
+</tr>
+<tr>
+    <td><a href="home.html">Home</a></td>
+    <td><a href="login.html">Login</a></td>
+    <td><a href="register.html">Registration</a></td>
+    <td><a href="catalogue.html">Catalogue</a></td>
+    <td><a href="cart.html">Cart</a></td>
+</tr>
+</table>
+</body>
+</html>
+```
+
+Replace `logo.png` with your logo image filename.
+
+### Part B — Java, JSP, Servlets and JDBC
+
+For the following programs, use Eclipse + Apache Tomcat + MySQL if your lab uses that setup.
+
+Common MySQL database setup:
+
+```sql
+CREATE DATABASE webdb;
+USE webdb;
+```
+
+For JDBC, use the MySQL Connector/J driver and the connection URL:
+
+```java
+"jdbc:mysql://localhost:3306/webdb"
+```
+
+Replace `root` and `password` with your own MySQL credentials. In modern Tomcat versions, servlet imports use `jakarta.servlet.*`; older Tomcat 9 labs generally use `javax.servlet.*`. The examples below use `javax.servlet.*` for compatibility with older college practical setups.
+
+### 1\. Java program to connect to a database, store and retrieve information
+
+File: `DatabaseDemo.java`
+
+```java
+import java.sql.*;
+
+public class DatabaseDemo {
+    public static void main(String[] args) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/webdb",
+            "root", "password");
+
+        Statement st = con.createStatement();
+
+        st.executeUpdate(
+            "CREATE TABLE IF NOT EXISTS student(" +
+            "id INT PRIMARY KEY, name VARCHAR(30))");
+
+        st.executeUpdate(
+            "INSERT INTO student VALUES(1,'Arun') " +
+            "ON DUPLICATE KEY UPDATE name='Arun'");
+
+        ResultSet rs = st.executeQuery("SELECT * FROM student");
+
+        while (rs.next()) {
+            System.out.println(rs.getInt("id") + " " +
+                               rs.getString("name"));
+        }
+
+        con.close();
+    }
+}
+```
+
+Output:
+
+```text
+1 Arun
+```
+
+### 2\. JSP program to find factorial
+
+File: `factorial.jsp`
+
+```jsp
+<%@ page language="java" %>
+<html>
+<body>
+<form method="post">
+    Enter Number:
+    <input type="number" name="n" min="0" required>
+    <input type="submit" value="Find Factorial">
+</form>
+
+<%
+String s = request.getParameter("n");
+
+if (s != null) {
+    try {
+        int n = Integer.parseInt(s);
+
+        if (n < 0 || n > 20) {
+            out.println("Enter a number from 0 to 20");
+        } else {
+            long fact = 1;
+
+            for (int i = 1; i <= n; i++)
+                fact *= i;
+
+            out.println("Factorial = " + fact);
+        }
+    } catch (NumberFormatException e) {
+        out.println("Invalid number");
+    }
+}
+%>
+</body>
+</html>
+```
+
+### 3\. Registration page using Java, JDBC and MySQL
+
+### Database table
+
+```sql
+CREATE TABLE users (
+    name VARCHAR(50),
+    password VARCHAR(100),
+    email VARCHAR(100),
+    country VARCHAR(50)
+);
+```
+
+### HTML form — `register.html`
+
+```html
+<form action="RegisterServlet" method="post">
+    Name: <input name="name" required><br>
+    Password: <input type="password" name="password" required><br>
+    Email: <input type="email" name="email" required><br>
+    Country: <input name="country" required><br>
+    <input type="submit" value="Register">
+</form>
+```
+
+### Servlet — `RegisterServlet.java`
+
+```java
+import java.io.*;
+import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/RegisterServlet")
+public class RegisterServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest req,
+        HttpServletResponse res) throws IOException {
+
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+
+        try {
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/webdb",
+                "root", "password");
+
+            PreparedStatement ps = con.prepareStatement(
+                "INSERT INTO users VALUES(?,?,?,?)");
+
+            ps.setString(1, req.getParameter("name"));
+            ps.setString(2, req.getParameter("password"));
+            ps.setString(3, req.getParameter("email"));
+            ps.setString(4, req.getParameter("country"));
+
+            ps.executeUpdate();
+            out.println("Registration successful");
+
+            con.close();
+        } catch (Exception e) {
+            out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+For a real application, passwords must be hashed before storage. This simplified version illustrates JDBC registration for a lab exercise.
+
+### 4\. JSP using JavaBeans to display name and age in another JSP
+
+### JavaBean — `Student.java`
+
+```java
+package mypack;
+
+public class Student {
+    private String name;
+    private int age;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+```
+
+### Input page — `input.jsp`
+
+```jsp
+<form action="display.jsp" method="post">
+    Name: <input name="name"><br>
+    Age: <input type="number" name="age"><br>
+    <input type="submit" value="Submit">
+</form>
+```
+
+### Display page — `display.jsp`
+
+```jsp
+<jsp:useBean id="s" class="mypack.Student" scope="request" />
+<jsp:setProperty name="s" property="name" param="name" />
+<jsp:setProperty name="s" property="age" param="age" />
+
+<html><body>
+<h2>Student Details</h2>
+Name: <jsp:getProperty name="s" property="name" /><br>
+Age: <jsp:getProperty name="s" property="age" />
+</body></html>
+```
+
+Place `Student.java` in the correct Java package and compile it into the web application's classes directory.
+
+### 5\. Calculator using a Java Servlet
+
+File: `CalculatorServlet.java`
+
+```java
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/CalculatorServlet")
+public class CalculatorServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest req,
+        HttpServletResponse res) throws IOException {
+
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+
+        try {
+            double a = Double.parseDouble(req.getParameter("a"));
+            double b = Double.parseDouble(req.getParameter("b"));
+            String op = req.getParameter("op");
+            double result = 0;
+
+            switch (op) {
+                case "+": result = a + b; break;
+                case "-": result = a - b; break;
+                case "*": result = a * b; break;
+                case "/":
+                    if (b == 0) {
+                        out.println("Cannot divide by zero");
+                        return;
+                    }
+                    result = a / b;
+                    break;
+                default:
+                    out.println("Invalid operator");
+                    return;
+            }
+
+            out.println("Result = " + result);
+        } catch (NumberFormatException e) {
+            out.println("Enter valid numbers");
+        }
+    }
+}
+```
+
+File: `calculator.html`
+
+```html
+<form action="CalculatorServlet" method="post">
+    <input name="a" type="number" step="any" required>
+    <select name="op">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+    </select>
+    <input name="b" type="number" step="any" required>
+    <input type="submit" value="Calculate">
+</form>
+```
+
+### 6\. JSP submits name and email to a servlet, which forwards to another JSP
+
+### Input page — `input.jsp`
+
+```jsp
+<form action="ProcessServlet" method="post">
+    Name: <input name="name" required><br>
+    Email: <input type="email" name="email" required><br>
+    <input type="submit" value="Submit">
+</form>
+```
+
+### Servlet — `ProcessServlet.java`
+
+```java
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/ProcessServlet")
+public class ProcessServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest req,
+        HttpServletResponse res)
+        throws ServletException, IOException {
+
+        req.setAttribute("name", req.getParameter("name"));
+        req.setAttribute("email", req.getParameter("email"));
+
+        req.getRequestDispatcher("result.jsp")
+           .forward(req, res);
+    }
+}
+```
+
+### Output page — `result.jsp`
+
+```jsp
+<html><body>
+<h2>Submitted Details</h2>
+Name: <%= request.getAttribute("name") %><br>
+Email: <%= request.getAttribute("email") %>
+</body></html>
+```
+
+The servlet receives the form using POST, stores the values as request attributes, and forwards the same request to `result.jsp`.
+
+### 7\. JDBC and Servlet CRUD operations for student details
+
+CRUD means Create, Read, Update and Delete.
+
+### Database table
+
+```sql
+CREATE TABLE student (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT
+);
+```
+
+### HTML form — `student.html`
+
+```html
+<form action="StudentServlet" method="post">
+    ID: <input type="number" name="id" required><br>
+    Name: <input name="name"><br>
+    Age: <input type="number" name="age"><br>
+
+    <button name="action" value="insert">Insert</button>
+    <button name="action" value="update">Update</button>
+    <button name="action" value="delete">Delete</button>
+    <button name="action" value="read">Display</button>
+</form>
+```
+
+### Servlet — `StudentServlet.java`
+
+```java
+import java.io.*;
+import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/StudentServlet")
+public class StudentServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest req,
+        HttpServletResponse res) throws IOException {
+
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+
+        try (Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/webdb",
+            "root", "password")) {
+
+            String action = req.getParameter("action");
+            int id = Integer.parseInt(req.getParameter("id"));
+
+            if ("insert".equals(action)) {
+                PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO student VALUES(?,?,?)");
+                ps.setInt(1, id);
+                ps.setString(2, req.getParameter("name"));
+                ps.setInt(3, Integer.pars
